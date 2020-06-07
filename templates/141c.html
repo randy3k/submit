@@ -39,7 +39,7 @@
     {% endwith %}
 
     <div class="jumbotron">
-    <form action="/141c/submit" >
+    <form action="/141c/submit">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="github repo">Github repo</span>
@@ -53,8 +53,14 @@
           <textarea name="remark" class="form-control" placeholder="if any" aria-label="remark" aria-describedby="basic-addon3">{{ remark }}</textarea>
         </div>
         <div align="right">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>
+        <script>
+            $("form").on("submit", function() {
+                $("#submit").html('Submitting..');
+                $("#submit").prop("disabled", true);
+            });
+        </script>
     </form>
     </div>
 
