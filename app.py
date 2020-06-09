@@ -115,17 +115,13 @@ def sta141b_submit():
             not params.repo.startswith("https://github.com/") and \
             not params.repo.startswith("www.github.com/") and \
             not params.repo.startswith("github.com/"):
-
         flash("ERROR: invalid repo", "danger")
-        return course_home
-    if "shinyapps.io" not in params.shiny and "run.app" not in params.shiny:
-        flash("ERROR: invalid shiny app url", "danger")
-        return course_home
-
-    if not requests.get(params.repo).ok:
+    elif not requests.get(params.repo).ok:
         flash("WARNING: it seems that the repo is not approachable (maybe it is private!?)", "warning")
 
-    if not requests.get(params.shiny).ok:
+    if "shinyapps.io" not in params.shiny and "run.app" not in params.shiny:
+        flash("ERROR: invalid shiny app url", "danger")
+    elif not requests.get(params.shiny).ok:
         flash("WARNING: it seems that the shiny app url is not approachable", "warning")
 
     alllogins = worksheet141b.col_values(1)[1:]
@@ -158,11 +154,8 @@ def sta141c_submit():
             not params.repo.startswith("https://github.com/") and \
             not params.repo.startswith("www.github.com/") and \
             not params.repo.startswith("github.com/"):
-
         flash("ERROR: invalid repo", "danger")
-        return course_home
-
-    if not requests.get(params.repo).ok:
+    elif not requests.get(params.repo).ok:
         flash("WARNING: it seems that the repo is not approachable (maybe it is private!?)", "warning")
 
     alllogins = worksheet141c.col_values(1)[1:]
