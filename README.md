@@ -1,4 +1,4 @@
-# A simple server to preview private github repo
+# A webapp for submitting urls
 
 ```
 PROJECTID=$(gcloud config get-value project)
